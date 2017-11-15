@@ -1,0 +1,21 @@
+<ion-header>
+  <div>
+    <h3>Login</h3>
+  </div>
+</ion-header>
+<ion-content padding>
+ 
+  <form #authForm (ngSubmit)="onLogin($event,login)" novalidate>
+    <label>Username or Email adress</label>
+    <ion-item class="login-width">
+      <ion-input type="text" name="username" [(ngModel)]="username" required>
+      </ion-input>
+    </ion-item>
+    <label>Password</label>
+    <ion-item class="login-width">
+      <ion-input type="password" name="password" [(ngModel)]="password" required>
+      </ion-input>
+    </ion-item>
+    <button type="submit" class="login-width" ion-button block>Log In</button>
+  </form>
+</ion-content>

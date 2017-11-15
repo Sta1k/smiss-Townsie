@@ -1,0 +1,38 @@
+page-login {
+    .button{
+        background: #fdd12e;
+        border: 3px solid #000;
+        border-radius: 8px;
+        color: #000;
+    }
+    .text-input{
+        line-height: 2em;
+        margin-bottom: 3%;
+        border: 3px solid #000;
+        border-radius: 8px;
+        color: #000;
+    }
+    ion-header{
+        height: 56px;
+        text-align: center;
+        background-color: #5bbc93;
+        border-bottom: 3px solid #000;
+    }
+    .text-input{
+        margin: 0;
+        width:100%;
+        background-color: #e5e5e5;
+    }
+    .item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+         border-bottom: none!important; 
+         
+         box-shadow: none!important;
+    }
+    .item{
+        padding-left:0; 
+    }
+    div.item-inner{
+        padding-right: 0!important;
+
+    }
+}
