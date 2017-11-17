@@ -28,6 +28,11 @@ page-register {
          
          box-shadow: none!important;
     }
+    .item-input.item-input-has-focus .item-inner,
+    .item-input.input-has-focus .item-inner {
+        border-bottom: none!important; 
+        box-shadow: none!important;
+    }
     .item{
         padding-left:0; 
     }

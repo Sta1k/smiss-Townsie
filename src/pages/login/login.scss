@@ -1,5 +1,6 @@
 page-login {
     .button{
+        margin: 26% 0 0 0;
         background: #fdd12e;
         border: 3px solid #000;
         border-radius: 8px;
@@ -24,15 +25,23 @@ page-login {
         background-color: #e5e5e5;
     }
     .item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
-         border-bottom: none!important; 
-         
-         box-shadow: none!important;
-    }
+        border-bottom: none!important; 
+        
+        box-shadow: none!important;
+   }
+   .item-input.item-input-has-focus .item-inner,
+   .item-input.input-has-focus .item-inner {
+       border-bottom: none!important; 
+       box-shadow: none!important;
+   }
     .item{
         padding-left:0; 
     }
     div.item-inner{
         padding-right: 0!important;
 
+    }
+    form{
+        margin: 10% 0;
     }
 }

@@ -1,3 +1,37 @@
 page-tabs {
-
+    .tabs-md .tabbar {
+        height: 7%;
+        background: #fdd12e;
+        border: 3px solid #000;
+        border-radius: 8px;
+        color: #000;
+        margin: 4%;
+        width: 92%;
+    }
+    // .tabs-md .tab-button[aria-selected=true] {
+    //     color: #000; /*your  text color */
+    //     background: #e8e8e8; /* your background color*/
+    //     border: 3px solid #000;
+    //     border-radius: 8px;
+    //     min-height: 4.5rem;
+    //     border-left: none;
+    // }
+    #tab-t0-0[aria-selected=true]{
+        background: #e8e8e8;
+        border: 3px solid #000;
+        color: #000;
+        min-height: 100%;
+        border-left:none;
+        border-top-right-radius:none!important; 
+        border-bottom-right-radius: none!important;
+    }
+    #tab-t0-1[aria-selected=true]{
+        background: #e8e8e8;
+        border: 3px solid #000;
+        color: #000;
+        min-height: 4.5rem;
+        border-right:none;
+        border-top-left-radius:none!important; 
+        border-bottom-left-radius: none!important;
+    }
 }
