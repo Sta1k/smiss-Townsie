@@ -5,15 +5,15 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Scan</ion-title>
-  </ion-navbar>
-
-</ion-header>
+    <ion-navbar  class="head">
+      <button ion-button icon-only menuToggle right>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-navbar>
+    </ion-header>
 
 
 <ion-content >
-  <button (click)='scan()'></button>
+  <button ion-button block (click)='scan()'>Scan</button>
 <div id="scan"></div>
 </ion-content>

@@ -18,6 +18,9 @@ page-register {
         background-color: #5bbc93;
         border-bottom: 3px solid #000;
     }
+    .item-block .item-inner{
+        border-bottom: none!important;
+    }
     .text-input{
         margin: 0;
         width:100%;
