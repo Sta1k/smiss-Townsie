@@ -19,6 +19,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { DataProvider } from '../providers/data/data';
 import { ScanPage } from '../pages/scan/scan';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { DbProvider } from '../providers/db/db';
 @NgModule({
   declarations: [
     MyApp,
@@ -54,7 +55,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
-    DataProvider
+    DataProvider,
+    DbProvider
   ]
 })
 export class AppModule {}

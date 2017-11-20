@@ -8,7 +8,7 @@ import {
   Marker
 } from '@ionic-native/google-maps';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,App } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { DataProvider } from '../../providers/data/data';
 /**
@@ -25,22 +25,23 @@ import { DataProvider } from '../../providers/data/data';
 })
 export class MapPage {
   map: GoogleMap;
-  tabBarElement: any;
+ 
   constructor(
+    
     public data:DataProvider,
     private geolocation: Geolocation,
     private googleMaps: GoogleMaps,
     public navCtrl: NavController,
     public navParams: NavParams) {
-    this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
+    
   }
 
   ionViewWillEnter() {
-    this.tabBarElement.style.display = 'none!important';
+    //this.tabBarElement.style.display = 'none!important';
   }
 
   ionViewWillLeave() {
-    this.tabBarElement.style.display = 'flex';
+    //this.tabBarElement.style.display = 'flex';
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapPage');
@@ -61,8 +62,8 @@ export class MapPage {
     let mapOptions: GoogleMapOptions = {
       camera: {
         target: {
-          lat:this.data.position.lat,
-          lng: this.data.position.lng
+          lat:this.data.position.lat||0,
+          lng: this.data.position.lng||0
         },
         zoom: 18,
         tilt: 30
@@ -81,8 +82,8 @@ export class MapPage {
       icon: 'blue',
       animation: 'DROP',
       position: {
-        lat: this.data.position.lat,
-        lng: this.data.position.lng
+        lat: this.data.position.lat||0,
+        lng: this.data.position.lng||0
       }
     })
     .then(marker => {

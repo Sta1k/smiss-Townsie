@@ -17,7 +17,7 @@ import 'rxjs/add/operator/filter'
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = TabsPage;
+  rootPage: any = ScanPage;
   currentLocation;
   pages: Array<{ title: string, component: any }>;
 

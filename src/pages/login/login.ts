@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController,App } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { MapPage } from '../map/map';
 /**
@@ -18,6 +18,7 @@ export class LoginPage {
   username;
   password;
   constructor(
+    private app:App,
     public navCtrl: NavController,
     public toastCtrl: ToastController, 
     public navParams: NavParams, 
@@ -41,7 +42,7 @@ export class LoginPage {
         console.log('Result: ', result)
       result.status===200||result.status===304
       ?
-      this.navCtrl.setRoot(MapPage)
+      this.app.getRootNav().setRoot(MapPage)
       :
       this.presentToast('Ooops! Something wrong with server :(')
       })
