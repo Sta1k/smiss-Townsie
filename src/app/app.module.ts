@@ -17,9 +17,11 @@ import { HeadComponent } from '../components/head/head';
 import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 import { DataProvider } from '../providers/data/data';
+import { ScanPage } from '../pages/scan/scan';
 @NgModule({
   declarations: [
     MyApp,
+    ScanPage,
     LoginPage,
     ListPage,
     TabsPage,
@@ -36,6 +38,7 @@ import { DataProvider } from '../providers/data/data';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    ScanPage,
     LoginPage,
     ListPage,
     TabsPage,
@@ -49,7 +52,6 @@ import { DataProvider } from '../providers/data/data';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
-    DataProvider,
     DataProvider
   ]
 })

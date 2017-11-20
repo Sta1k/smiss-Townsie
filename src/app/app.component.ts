@@ -7,6 +7,7 @@ import { LoginPage } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
 import { RegisterPage } from '../pages/register/register'
 import { MapPage } from '../pages/map/map'
+import{ScanPage} from '../pages/scan/scan'
 import { Geolocation } from '@ionic-native/geolocation'
 import { DataProvider } from '../providers/data/data';
 import 'rxjs/add/operator/filter'
@@ -31,8 +32,9 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Login', component: LoginPage },
-      { title: 'Map', component: MapPage }
+      { title: 'Login', component:TabsPage },
+      { title: 'Map', component: MapPage },
+      {title: 'Scan', component: ScanPage }
     ];
 
   }
@@ -65,11 +67,7 @@ getPos(){
   }).catch((error) => {
     console.log('Error getting location', error);
   });
-  let watch = this.geolocation.watchPosition()
-    .filter((p) => p.coords !== undefined) //Filter Out Errors
-    .subscribe(position => {
-      console.log(position.coords.longitude + ' ' + position.coords.latitude);
-    });
+ 
 }
   openPage(page) {
     // Reset the content nav to have just this page

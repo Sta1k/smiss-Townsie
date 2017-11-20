@@ -77,12 +77,12 @@ export class MapPage {
     console.log('Map is ready!');
     // Now you can use all methods safely.
     this.map.addMarker({
-      title: 'Ionic',
+      title: 'You',
       icon: 'blue',
       animation: 'DROP',
       position: {
-        lat: 43.0741904,
-        lng: -89.3809802
+        lat: this.data.position.lat,
+        lng: this.data.position.lng
       }
     })
     .then(marker => {
