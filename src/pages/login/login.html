@@ -5,7 +5,7 @@
 </ion-header>
 <ion-content padding>
  
-  <form #authForm (ngSubmit)="onLogin($event,login)" novalidate>
+  <form #authForm (ngSubmit)="onLogin($event)" novalidate>
     <label>Username or Email adress</label>
     <ion-item class="login-width">
       <ion-input type="text" name="username" [(ngModel)]="username" required>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
-
+import { MapPage } from '../map/map';
 /**
  * Generated class for the LoginPage page.
  *
@@ -15,23 +15,46 @@ import { ApiProvider } from '../../providers/api/api';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,public api:ApiProvider) {
+  username;
+  password;
+  constructor(
+    public navCtrl: NavController,
+    public toastCtrl: ToastController, 
+    public navParams: NavParams, 
+    public api: ApiProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
-  onLogin(e: Event, login) {
-    console.log(login)
+  onLogin(e: Event) {
     e.preventDefault();
-    // let user = new Object(this.username, this.password, this.remember);
-    this.api.login(login)
+    let result;
+    let user={
+      log:this.username,
+      pwd:this.password
+    }
+    this.api.login(user)
       .toPromise()
-      // .then(res => result = res.json())
-      .then(result => console.log(result))
+      //.then(res => result = res.json())
+      .then(result =>{
+        console.log('Result: ', result)
+      result.status===200||result.status===304
+      ?
+      this.navCtrl.setRoot(MapPage)
+      :
+      this.presentToast('Ooops! Something wrong with server :(')
+      })
+
     //.subscribe((event) => event.json())
 
+  }
+  presentToast(message) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000
+    });
+    toast.present();
   }
 
 }

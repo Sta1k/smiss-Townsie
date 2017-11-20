@@ -22,10 +22,10 @@ export class ApiProvider {
       options = new RequestOptions({ headers: headers }),
       body = new URLSearchParams();
 
-    body.set("pwd", req.password);
-    body.set("log", req.username);
-    body.set("rememberme", req.remember);
+    body.set("pwd", req.pwd);
+    body.set("log", req.log);
+    body.set("rememberme", req.remember||true);
 
-    return this.http.post(this.url + 'login/', body.toString(), options).map(res=>res.json())
+    return this.http.post(this.url + 'login/', body.toString(), options)//.map(res=>res.json())
   }
 }
