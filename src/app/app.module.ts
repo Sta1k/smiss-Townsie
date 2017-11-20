@@ -18,6 +18,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 import { DataProvider } from '../providers/data/data';
 import { ScanPage } from '../pages/scan/scan';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 @NgModule({
   declarations: [
     MyApp,
@@ -46,6 +47,7 @@ import { ScanPage } from '../pages/scan/scan';
     MapPage
   ],
   providers: [
+    BarcodeScanner,
     Geolocation,
     GoogleMaps,
     StatusBar,
