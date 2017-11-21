@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ApiProvider {
   private url = 'http://app.townsie.com/';
+  private apitale = 'wp-json/wp/v2/'
   constructor(public http: Http) {
     console.log('Hello ApiProvider Provider');
   }
@@ -24,8 +25,16 @@ export class ApiProvider {
 
     body.set("pwd", req.pwd);
     body.set("log", req.log);
-    body.set("rememberme", req.remember||true);
+    body.set("rememberme", req.remember || true);
 
-    return this.http.post(this.url + 'login/', body.toString(), options)//.map(res=>res.json())
+    return this.http.post(this.url + 'wp-login.php', body.toString(), options)//.map(res=>res.json())
+  }
+  getMe() {
+    let headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': '*/*'
+    }),
+      options = new RequestOptions({ headers: headers })
+    return this.http.get(this.url + this.apitale + 'users/me', options)
   }
 }

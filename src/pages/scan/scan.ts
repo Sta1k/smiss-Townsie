@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { ApiProvider } from '../../providers/api/api'
 /**
  * Generated class for the ScanPage page.
  *
@@ -15,7 +16,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 })
 export class ScanPage {
 
-  constructor(private barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public api: ApiProvider, private barcodeScanner: BarcodeScanner, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -29,5 +30,10 @@ export class ScanPage {
       // An error occurred
       console.log(err)
     });
+  }
+  getData() {
+    this.api.getMe()
+      .subscribe(res => console.log(res))
+      
   }
 }
