@@ -89,7 +89,7 @@ export class MapPage {
     .then(marker => {
       marker.on(GoogleMapsEvent.MARKER_CLICK)
         .subscribe(() => {
-          alert('clicked');
+          //alert('clicked');
         });
     });
     // this.geolocation.getCurrentPosition().then((resp) => {

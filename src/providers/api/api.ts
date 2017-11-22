@@ -27,7 +27,7 @@ export class ApiProvider {
     body.set("log", req.log);
     body.set("rememberme", req.remember || true);
 
-    return this.http.post(this.url + 'wp-login.php', body.toString(), options)//.map(res=>res.json())
+    return this.http.post(this.url + 'login', body.toString(), options)//.map(res=>res.json())
   }
   getMe() {
     let headers = new Headers({

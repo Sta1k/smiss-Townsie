@@ -5,6 +5,7 @@
     <author email="hi@ionicframework" href="http://ionicframework.com/">SMISS LTD Team</author>
     <content src="index.html" />
     <access origin="*" />
+    <allow-navigation href="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -92,4 +93,5 @@
         <variable name="API_KEY_FOR_IOS" value="AIzaSyD2JF_ec0tfnioyg5S4yWA0bBSGahrWmWA" />
     </plugin>
     <plugin name="cordova-plugin-statusbar" spec="^2.3.0" />
+    <engine name="ios" spec="~4.3.1" />
 </widget>
