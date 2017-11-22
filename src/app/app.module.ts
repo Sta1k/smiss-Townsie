@@ -20,6 +20,7 @@ import { DataProvider } from '../providers/data/data';
 import { ScanPage } from '../pages/scan/scan';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { DbProvider } from '../providers/db/db';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 @NgModule({
   declarations: [
     MyApp,
@@ -48,6 +49,7 @@ import { DbProvider } from '../providers/db/db';
     MapPage
   ],
   providers: [
+    InAppBrowser,
     BarcodeScanner,
     Geolocation,
     GoogleMaps,

@@ -7,9 +7,11 @@ import { LoginPage } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
 import { RegisterPage } from '../pages/register/register'
 import { MapPage } from '../pages/map/map'
+import {BrowserPage} from '../pages/browser/browser'
 import{ScanPage} from '../pages/scan/scan'
 import { Geolocation } from '@ionic-native/geolocation'
 import { DataProvider } from '../providers/data/data';
+import { InAppBrowser,InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import 'rxjs/add/operator/filter'
 @Component({
   templateUrl: 'app.html'
@@ -17,11 +19,12 @@ import 'rxjs/add/operator/filter'
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = TabsPage;
+  rootPage: any = BrowserPage;
   currentLocation;
   pages: Array<{ title: string, component: any }>;
 
   constructor(
+    public iab:InAppBrowser,
     public toastCtrl: ToastController, 
     public data:DataProvider,
     private geolocation: Geolocation,
@@ -38,16 +41,33 @@ export class MyApp {
     ];
 
   }
-
+  options : InAppBrowserOptions = {
+    location : 'yes',//Or 'no' 
+    hidden : 'no', //Or  'yes'
+    clearcache : 'yes',
+    clearsessioncache : 'yes',
+    zoom : 'yes',//Android only ,shows browser zoom controls 
+    hardwareback : 'yes',
+    mediaPlaybackRequiresUserAction : 'no',
+    shouldPauseOnSuspend : 'no', //Android only 
+    closebuttoncaption : 'Close', //iOS only
+    disallowoverscroll : 'no', //iOS only 
+    toolbar : 'yes', //iOS only 
+    enableViewportScale : 'no', //iOS only 
+    allowInlineMediaPlayback : 'no',//iOS only 
+    presentationstyle : 'pagesheet',//iOS only 
+    fullscreen : 'yes',//Windows only    
+};
   initializeApp() {
     this.platform.ready().then(() => {
      this.getPos();
-      let login = LoginPage,
-        register = RegisterPage
+      // let login = LoginPage,
+      //   register = RegisterPage
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.iab.create('http://app.townsie.com/register/','_self',this.options)
     });
   }
 getPos(){
