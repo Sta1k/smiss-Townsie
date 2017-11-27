@@ -1,5 +1,5 @@
 page-tabs {
-    .tabs-md .tabbar {
+    .tabs-ios .tabbar,.tabs-md .tabbar {
         height: 42px;
         background: #fdd12e;
         border: 3px solid #000;
@@ -9,17 +9,23 @@ page-tabs {
         width: 92%;
         top:60px!important;
     }
+    .tabs-ios .tab-button[aria-selected=true] ,
     .tabs-md .tab-button[aria-selected=true] {
         color: #000; /*your  text color */
         background: #e8e8e8; /* your background color*/
-        border: 3px solid #000;
+        // border: 3px solid #000;
         border-radius: 8px;
-        min-height: 117%;
+        min-height: 100%;
        
+    }
+    .tabs-ios #tab-t0-1[aria-selected=false],
+    .tabs-ios #tab-t0-0[aria-selected=false]{
+        border-top: 3px solid #000;
+        border-bottom: 3px solid #000
     }
     #tab-t0-0[aria-selected=true]{
         background: #e8e8e8;
-        
+        border-right: 3px solid #000;
         border-left:none;
         
         border-top-right-radius:initial; 
@@ -27,7 +33,7 @@ page-tabs {
     }
     #tab-t0-1[aria-selected=true]{
         background: #e8e8e8;
-     
+        border-left: 3px solid #000;
         border-right:none;
         border-top-left-radius:initial; 
         border-bottom-left-radius: initial;

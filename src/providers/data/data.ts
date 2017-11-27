@@ -10,8 +10,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class DataProvider {
 position;
+token;
+id
   constructor(public http: Http) {
-    console.log('Hello DataProvider Provider');
+    console.log('Hello DataProvider');
   }
 
 }

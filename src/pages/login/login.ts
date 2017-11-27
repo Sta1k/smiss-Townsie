@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController,App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, App } from 'ionic-angular';
 import { ApiProvider } from '../../providers/api/api';
 import { MapPage } from '../map/map';
+import { Database } from "../../providers/db/db"
+import { DataProvider } from '../../providers/data/data';
 /**
  * Generated class for the LoginPage page.
  *
@@ -18,11 +20,13 @@ export class LoginPage {
   username;
   password;
   constructor(
-    private app:App,
+    private app: App,
+    public data: DataProvider,
     public navCtrl: NavController,
-    public toastCtrl: ToastController, 
-    public navParams: NavParams, 
-    public api: ApiProvider) {
+    public toastCtrl: ToastController,
+    public navParams: NavParams,
+    public api: ApiProvider,
+    private db: Database) {
   }
 
   ionViewDidLoad() {
@@ -31,24 +35,37 @@ export class LoginPage {
   onLogin(e: Event) {
     e.preventDefault();
     let result;
-    let user={
-      log:this.username,
-      pwd:this.password
+    let user = {
+      username: this.username,
+      password: this.password
     }
     this.api.login(user)
       .toPromise()
-      //.then(res => result = res.json())
-      .then(result =>{
+      .then(res => result = res.json())
+      .then(result => {
+        this.db.writeRemember(this.username, this.password, true)
         console.log('Result: ', result)
-      result.status===200||result.status===304
-      ?
-      this.app.getRootNav().setRoot(MapPage)
-      :
-      this.presentToast('Ooops! Something wrong with server :(')
+
+        result.token
+          ?
+          this.loggedIn(result)
+          :
+          this.presentToast('Ooops! Something wrong with server :(')
       })
 
     //.subscribe((event) => event.json())
 
+  }
+  loggedIn(r) {
+    let result
+    this.data.token = r.token
+    this.api.getMe().subscribe(res => {
+      result = res.json()
+      console.log(result)
+      this.data.id = result.id
+    })
+    this.presentToast(`Logged in as ${r.user_display_name}`)
+    this.app.getRootNav().setRoot(MapPage)
   }
   presentToast(message) {
     let toast = this.toastCtrl.create({

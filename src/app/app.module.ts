@@ -19,8 +19,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { DataProvider } from '../providers/data/data';
 import { ScanPage } from '../pages/scan/scan';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-import { DbProvider } from '../providers/db/db';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Database } from '../providers/db/db';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -49,7 +49,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     MapPage
   ],
   providers: [
-    InAppBrowser,
+   
     BarcodeScanner,
     Geolocation,
     GoogleMaps,
@@ -58,7 +58,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
     DataProvider,
-    DbProvider
+    Database
   ]
 })
 export class AppModule {}
