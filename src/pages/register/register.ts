@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams ,ToastController} from 'ionic-angular';
-
+import { App, IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { ApiProvider } from '../../providers/api/api';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 /**
  * Generated class for the RegisterPage page.
  *
@@ -14,20 +15,33 @@ import { IonicPage, NavController, NavParams ,ToastController} from 'ionic-angul
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-cansee;
-password;
-email;
-name;
-username;
-  constructor(public toastCtrl: ToastController,public navCtrl: NavController, public navParams: NavParams) {
+  regObj = {
+    username: '',
+    password: '',
+    email: '',
+    name: '',
+    cansee: 'public',
+    nonce: ''
   }
-
+  br;
+  constructor(private app: App, private iab: InAppBrowser, public api: ApiProvider, public toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams) {
+  }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
+   
   }
-  register(){
-this.presentToast('Start register')
+  closeIAB() {
+   
   }
+  register() {
+
+    console.log(this.regObj)
+    this.presentToast('Start register')
+    this.api.register(this.regObj)
+      .subscribe(res => console.log(res))
+  }
+
   presentToast(message) {
     let toast = this.toastCtrl.create({
       message: message,

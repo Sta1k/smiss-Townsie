@@ -11,6 +11,7 @@ import { DataProvider } from '../providers/data/data';
 import { Database } from "../providers/db/db"
 import 'rxjs/add/operator/filter'
 import { ApiProvider } from '../providers/api/api';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 @Component({
   templateUrl: 'app.html'
 })
@@ -23,6 +24,7 @@ export class MyApp {
   pages: Array<{ title: string, component: any }>;
 
   constructor(
+    private iab: InAppBrowser,
     public api:ApiProvider,
     public toastCtrl: ToastController,
     public data: DataProvider,
@@ -44,13 +46,15 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.db.checkRemember()
-        .then(
-        data => {
-          console.log(data)
-          this.initUser()
-        },
-        err => console.log(err))
+      const browser = this.iab.create(this.api.regUrl,'_self')
+     
+      // this.db.checkRemember()
+      //   .then(
+      //   data => {
+      //     console.log(data)
+      //     this.initUser()
+      //   },
+      //   err => console.log(err))
       this.getPos();
       // let login = LoginPage,
       //   register = RegisterPage
