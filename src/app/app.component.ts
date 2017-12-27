@@ -46,7 +46,7 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      const browser = this.iab.create(this.api.regUrl,'_self')
+      // const browser = this.iab.create(this.api.regUrl,'_self')
      
       // this.db.checkRemember()
       //   .then(
@@ -62,8 +62,17 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
+      let notificationOpenedCallback = function(jsonData) {
+        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      };
+  
+      window["plugins"].OneSignal
+        .startInit("64a0940b-c39e-45a2-8173-5f3e151e0e69", "townsie-1511163873182")
+        .handleNotificationOpened(notificationOpenedCallback)
+        .endInit();
     });
+
+   
   }
   initUser() {
     this.user = {

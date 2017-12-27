@@ -31,14 +31,12 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
    
   }
-  closeIAB() {
-   
-  }
+ 
   register() {
 
     console.log(this.regObj)
     this.presentToast('Start register')
-    this.api.register(this.regObj)
+    this.api.getRegForm()
       .subscribe(res => console.log(res))
   }
 

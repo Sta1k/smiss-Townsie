@@ -26,6 +26,7 @@ export class ScanPage {
     this.barcodeScanner.scan().then((barcodeData:any) => {
       this.presentToast('Format: '+barcodeData.format+'\nText:'+barcodeData.text )
       console.log(barcodeData)
+      this.api.postCode(barcodeData).subscribe(data=>console.log(data))
       // Success! Barcode data is here
     }, (err) => {
       // An error occurred
@@ -33,9 +34,9 @@ export class ScanPage {
     });
   }
   getData() {
-    this.api.getMe()
-      .subscribe(res => {this.presentToast("Your saved coordinates is "+res.json().geolocation)})
-      
+    this.api.getRegForm()
+      .subscribe(res => {this.presentToast("Your saved coordinates is "+res.json());console.log(res)})
+
   }
   presentToast(message) {
     let toast = this.toast.create({

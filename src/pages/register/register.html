@@ -27,20 +27,13 @@
   <div [innerHTML]='br'>
 
   </div>
-  <!-- <p>Registering is easy. Just fill in the fields below, and we'll get a new account set up for you in no time.</p>
+  <p>Registering is easy. Just fill in the fields below, and we'll get a new account set up for you in no time.</p>
   <label>Username</label>
   <ion-item class="login-width">
     <ion-input type="text" id='username' name="username" [(ngModel)]="regObj.username" required minlength='3'>
     </ion-input>
   </ion-item>
-  <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
-    <div *ngIf="username.errors.required">
-      Username is required.
-    </div>
-    <div *ngIf="username.errors.minlength">
-      Username must be at least 3 characters long.
-    </div>
-  </div>
+  
   <label>Email Address</label>
   <ion-item class="login-width">
     <ion-input type="email" name="email" [(ngModel)]="regObj.email" required>
@@ -69,5 +62,5 @@
       <ion-option value="loggedin">All members</ion-option>
     </ion-select>
   </ion-item>
-  <button type="submit" class="login-width" (click)='register()' ion-button block>Complete Sign Up</button> -->
+  <button type="submit" class="login-width" (click)='register()' ion-button block>Complete Sign Up</button>
 </ion-content>

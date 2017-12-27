@@ -10,10 +10,13 @@ import { DataProvider } from '../data/data';
 */
 @Injectable()
 export class ApiProvider {
-  private url = 'http://demo.townsie.com/wp-json/jwt-auth/v1/token';
-  private coords = 'http://demo.townsie.com/wp-json/wp/v2/users/';
-  private idUrl = 'http://demo.townsie.com/wp-json/wp/v2/users/me'
-  public regUrl = 'http://demo.townsie.com/register/'
+  private getAuthCookie = 'http://townsie.smiss.ua/api/get_nonce/?controller=user&method=register'
+  private url = 'http://townsie.smiss.ua/wp-json/jwt-auth/v1/token';
+  private coords = 'http://townsie.smiss.ua/wp-json/wp/v2/users/';
+  private idUrl = 'http://townsie.smiss.ua/wp-json/wp/v2/users/me'
+  public regUrl = 'http://townsie.smiss.ua/api/user/register/?insecure=cool&username=art&email=art@domain.com&nonce=b558cec15e&display_name=Art';
+  private api2='http://townsie.smiss.ua/api/auth/generate_auth_cookie/?insecure=cool';
+  private nonce= 'http://townsie.smiss.ua/api/'
   constructor(public http: Http, public data: DataProvider) {
     console.log('Hello ApiProvider Provider');
   }
@@ -29,11 +32,16 @@ export class ApiProvider {
     body.set("password", req.password);
     body.set("username", req.username);
     body.set("rememberme", req.remember || true);
-
-    return this.http.post(this.url, body.toString(), options)//.map(res=>res.json())
+let str=`username=${req.username}&password=${req.password}`
+    return this.http.get(this.api2+str, options)//.map(res=>res.json())
   }
   getRegForm(){
-    return this.http.get(this.regUrl)//.map(res=>res.json())
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Accept': '*/*',
+  
+    })
+    return this.http.get(this.getAuthCookie)//.map(res=>res.json())
   }
   register(req) {
     console.log('Request to api', req);
@@ -82,8 +90,9 @@ export class ApiProvider {
     }),
       options = new RequestOptions({ headers: headers }),
       body = new URLSearchParams();
-    body.set("code", req.code);
-    return this.http.post(this.url + 'postcode', body.toString(), options)//.map(res=>res.json())
+    body.set("barcode", req.text);
+    let id = this.data.id;
+    return this.http.post(this.coords+id, body.toString(), options)//.map(res=>res.json())
   }
   getMe() {
     let headers = new Headers({
